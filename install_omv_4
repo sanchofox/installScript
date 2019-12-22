@@ -1,0 +1,27 @@
+#!/bin/bash
+
+url="https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/"
+
+echo "Downloading omv-extras.org plugin for openmediavault 4.x ..."
+file="openmediavault-omvextrasorg_latest_all4.deb"
+
+if [ -f "${file}" ]; then
+  rm ${file}
+fi
+wget ${url}/${file}
+if [ -f "${file}" ]; then
+  dpkg -i ${file}
+
+  if [ $? -gt 0 ]; then
+    echo "Installing other dependencies ..."
+    apt-get -f install
+  fi
+
+  echo "Updating repos ..."
+  apt-get update
+else
+  echo "There was a problem downloading the package."
+fi
+
+exit 0
+
