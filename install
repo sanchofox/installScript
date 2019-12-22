@@ -112,6 +112,12 @@ if [[ ! "${omvInstall}" == "ii" ]]; then
     exit 2
   fi
 
+  echo "Install php-pam..."
+  if ! apt-get --yes install php-pam; then
+    echo "failed to install php-pam package."
+    exit 2
+  fi
+
   echo "Installing openmediavault..."
   aptFlags="--yes --auto-remove --show-upgraded --allow-downgrades --allow-change-held-packages --no-install-recommends"
   cmd="apt-get ${aptFlags} install openmediavault"
