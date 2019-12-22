@@ -106,15 +106,15 @@ if [[ ! "${omvInstall}" == "ii" ]]; then
     exit 2
   fi
 
-  echo "Install ntp..."
-  if ! apt-get --yes install ntp; then
-    echo "failed to install ntp package."
-    exit 2
-  fi
-
   echo "Install php-pam..."
   if ! apt-get --yes install php-pam; then
     echo "failed to install php-pam package."
+    exit 2
+  fi
+
+  echo "Install ntp..."
+  if ! apt-get --yes install ntp; then
+    echo "failed to install ntp package."
     exit 2
   fi
 
